@@ -32,9 +32,11 @@ public class PlayerController : MonoBehaviour {
 
 	void GoodKey(){
 		movement += Vector2.down * goodKeyPower;
+		Camera.main.GetComponent<CameraController>().Shake(0.1f, 1);
 	}
 	void BadKey(){
 		movement += Vector2.up * badKeyPower;
+		Camera.main.GetComponent<CameraController>().Shake(0.1f, 5);
 	}
 
 }

@@ -30,6 +30,7 @@ namespace Assets.Scripts
         public bool IsKeyDown;
         public string CurrentPowerString;
         public int PowerIndex = 0;
+        public PlayerController PlayerController;
 
         private string _correctOpenTag;
         private string _wrongOpenTag;
@@ -69,6 +70,7 @@ namespace Assets.Scripts
             var result = firstHalf + _wrongOpenTag + CurrentLetter + ColorCloseTag + secondHalf.Substring(1, secondHalf.Length - 1) ;
 
             DisplayedText.text = result;
+            PlayerController.BadKey();
         }
 
         private void SetNextLetterCorrect()
@@ -80,6 +82,8 @@ namespace Assets.Scripts
             IsKeyDown = true;
             var result = _correctOpenTag + firstHalf + ColorCloseTag + secondHalf;
             DisplayedText.text = result;
+
+            PlayerController.GoodKey();
         }
 
         private void CheckPowerStrings(KeyCode kc)

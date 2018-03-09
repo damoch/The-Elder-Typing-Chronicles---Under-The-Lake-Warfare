@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	Rigidbody2D rb;
+	public Rigidbody2D Bullet;
 	Vector2 movement;
 	public float smooth = 0.4f;
 
 	public float goodKeyPower = 1f;
 	public float badKeyPower = 1f;
 	public float noKeyPower = 0.5f;
+	public float SpeedOfBullet;
 
 	
 	void Start () {
@@ -28,17 +30,23 @@ public class PlayerController : MonoBehaviour {
 			movement += Vector2.up * noKeyPower;
 		}
 		rb.velocity = Vector2.Lerp(rb.velocity, rb.velocity + movement, smooth);
+		if(Input.GetKeyDown("space")){
+			Shoot();
+		}
 	}
 
-	void GoodKey(){
+	public void GoodKey(){
 		movement += Vector2.down * goodKeyPower;
 		Camera.main.GetComponent<CameraController>().Shake(0.6f, 1);
 	}
-	void BadKey(){
+	public void BadKey(){
 		movement += Vector2.up * badKeyPower;
 		Camera.main.GetComponent<CameraController>().Shake(0.6f, 4);
 	}
-	void Shoot(){
-		
-	}
+    private void Shoot()
+    {
+        Vector2 _renderDirection = new Vector2(transform.position.x - 2, transform.position.y);
+        Rigidbody2D _bullet = Instantiate(Bullet, _renderDirection, Quaternion.identity) as Rigidbody2D;
+        _bullet.AddForce(new Vector2(-SpeedOfBullet, 0));
+    }
 }

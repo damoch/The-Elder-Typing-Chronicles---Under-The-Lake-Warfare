@@ -11,12 +11,16 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Update () {
-		if(isShaking)
-			transform.rotation = Quaternion.Euler(0,0,Random.Range(-shakeForce, shakeForce));
+		if(isShaking){
+			transform.rotation = Quaternion.Euler(0,0,shakeForce);
+			Camera.main.orthographicSize += Mathf.Abs(shakeForce); 
+			shakeForce = Mathf.Lerp(shakeForce, -shakeForce - (shakeForce * shakeTime), shakeTime);
+		}
 		else 
 			transform.rotation = Quaternion.Euler(0,0,0);
+			Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 10f, 0.1f);
 	}
-	IEnumerator ShakeTimeOut(){
+ 	IEnumerator ShakeTimeOut(){
 		isShaking = true;
 		yield return new WaitForSeconds(shakeTime);
 		isShaking = false;

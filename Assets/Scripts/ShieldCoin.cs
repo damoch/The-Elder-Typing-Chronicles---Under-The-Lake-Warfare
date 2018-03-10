@@ -5,5 +5,6 @@ public class ShieldCoin : Coin {
     {
         playerController.HasShield = true;
         Generator.NumberOfObjects--;
+        playerController.HasShieldText.text = "Masz tarcze";
     }
 }

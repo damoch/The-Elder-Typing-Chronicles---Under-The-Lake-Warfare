@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -26,6 +27,10 @@ public class PlayerController : MonoBehaviour {
     private float _startY;
     public GameObject ForceField;
     public GameController GameController;
+
+    public Text HasShieldText;
+    public Text HasBulletText;
+
     private void Start () {
         ForceField.SetActive(HasShield);
         InvokeRepeating("NoKey", 1f, 1f);
@@ -66,6 +71,7 @@ public class PlayerController : MonoBehaviour {
         var _bullet = Instantiate(Bullet, _spawnDirection, Quaternion.identity) as Rigidbody2D;
         _bullet.AddForce(new Vector2(SpeedOfBullet, 0));
         HasBullet = false;
+        HasBulletText.text = "";
     }
 
 	public int HitPoints{
@@ -87,8 +93,11 @@ public class PlayerController : MonoBehaviour {
     {
         IsShieldOn = true;
         HasShield = false;
+
         ForceField.SetActive(true);
         StartCoroutine("ShieldTimeout");
+
+        HasShieldText.text = "";
     }
 
     private IEnumerator ShieldTimeout()

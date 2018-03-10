@@ -7,6 +7,8 @@ public class RendererController : MonoBehaviour {
     public Rigidbody2D RenderedObject;
     public int RenderInterval;
     public int SpeedOfRenderObject;
+    public float MaxPositionY;
+    public float MinPositionY;
 
     private float _time;
     private Vector2 _renderDirection;
@@ -18,7 +20,7 @@ public class RendererController : MonoBehaviour {
     }
 
     void Update () {
-
+        _renderDirection.y = UnityEngine.Random.Range(MinPositionY, MaxPositionY);
         _time += Time.deltaTime;
         if (_time > RenderInterval)
         {

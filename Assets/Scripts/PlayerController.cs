@@ -47,11 +47,9 @@ public class PlayerController : MonoBehaviour {
 	public void GoodKey()
     {
         GravitationForce += _frameGravDiff;
-		Camera.main.GetComponent<CameraController>().Shake(0.6f, 1);
 	}
 	public void BadKey(){
         AntiGravitationForce += _frameAntigravDiff;
-        Camera.main.GetComponent<CameraController>().Shake(0.6f, -1);
 	} 
 
     private void NoKey()
@@ -90,6 +88,7 @@ public class PlayerController : MonoBehaviour {
         IsShieldOn = true;
         HasShield = false;
         ForceField.SetActive(true);
+        StartCoroutine("ShieldTimeout");
     }
 
     private IEnumerator ShieldTimeout()

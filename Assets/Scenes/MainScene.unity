@@ -694,8 +694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RGame: {fileID: 1761021691}
-  RGameText: Restart game
+  RGameText: Zacznij od nowa
   PController: {fileID: 1486680490}
+  IsGameOver: 0
 --- !u!4 &1205855252
 Transform:
   m_ObjectHideFlags: 0
@@ -748,7 +749,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114451006695566840, guid: d3b26eaff93b07341b1777f6a5de9116,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114451006695566840, guid: d3b26eaff93b07341b1777f6a5de9116, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d3b26eaff93b07341b1777f6a5de9116, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1486680489

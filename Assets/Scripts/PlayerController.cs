@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    public float ShieldTimeoutLength { get; private set; }
+    public float ShieldTimeoutLength;
 
     internal void Shield()
     {

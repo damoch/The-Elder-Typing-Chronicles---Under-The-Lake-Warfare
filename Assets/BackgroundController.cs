@@ -12,7 +12,7 @@ public class BackgroundController : MonoBehaviour {
     }
 
     void Update () {
-        transform.Translate(new Vector2(-1, 0));
+        transform.Translate(new Vector2(-0.35f, 0));
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

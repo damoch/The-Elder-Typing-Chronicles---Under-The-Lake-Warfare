@@ -5,8 +5,8 @@ using UnityEngine;
 public class RendererController : MonoBehaviour {
 
     public Rigidbody2D RenderedObject;
-    public int FrequentOfRender;
-    public int SpeedOfRender;
+    public int RenderInterval;
+    public int SpeedOfRenderObject;
 
     private float _time;
     private Vector2 _renderDirection;
@@ -14,11 +14,13 @@ public class RendererController : MonoBehaviour {
     void Start () {
         _time = 0;
         _renderDirection = new Vector2(transform.position.x, transform.position.y);
+        RenderInterval += UnityEngine.Random.Range(0, 1);
     }
 
     void Update () {
-        _time++;
-        if (_time > FrequentOfRender)
+
+        _time += Time.deltaTime;
+        if (_time > RenderInterval)
         {
             RenderObject();
             _time = 0;
@@ -31,6 +33,6 @@ public class RendererController : MonoBehaviour {
         //_renderDirection = new Vector2(transform.position.x, transform.position.y);
 
         Rigidbody2D _badGuyInstance = Instantiate(RenderedObject, _renderDirection, Quaternion.identity) as Rigidbody2D;
-        _badGuyInstance.AddForce(new Vector2(-SpeedOfRender, 0));
+        _badGuyInstance.AddForce(new Vector2(-SpeedOfRenderObject, 0));
     }
 }

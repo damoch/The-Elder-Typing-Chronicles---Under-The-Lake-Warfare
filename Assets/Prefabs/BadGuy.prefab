@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 50630151754180368, guid: 42f119f3955bfc84493c5551badbcba5, type: 2}
-  BadGuyLife: 3
   SpeedOfBullet: 600
+  ShootInterval: 2
 --- !u!212 &212714587585717686
 SpriteRenderer:
   m_ObjectHideFlags: 1

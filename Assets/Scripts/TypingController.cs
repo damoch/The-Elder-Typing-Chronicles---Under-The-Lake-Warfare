@@ -41,6 +41,8 @@ namespace Assets.Scripts
         private string _correctOpenTag;
         private string _wrongOpenTag;
         private KeyCode _previousPressedKey;
+        private bool _wrongKeyDown;
+
         private void Start()
         {
             DisplayedText.text = CurrentWordsToType;
@@ -53,6 +55,7 @@ namespace Assets.Scripts
             Event e = Event.current;
             if (e.isKey && e.keyCode != KeyCode.None && e.keyCode != _previousPressedKey)
             {
+                _wrongKeyDown = false;
                 CheckPowerStrings(e.keyCode);
             }
         }
@@ -71,7 +74,8 @@ namespace Assets.Scripts
 
         private void SetNextLetterWrong()
         {
-            if (IsKeyDown) return;
+            if (IsKeyDown || _wrongKeyDown) return;
+            _wrongKeyDown = true;
             var firstHalf = CurrentWordsToType.Substring(0, CurrentLetterPosition);
             var secondHalf = CurrentWordsToType.Substring(CurrentLetterPosition, CurrentWordsToType.Length - CurrentLetterPosition);
             var result = firstHalf + _wrongOpenTag + CurrentLetter + ColorCloseTag + secondHalf.Substring(1, secondHalf.Length - 1) ;
@@ -83,6 +87,7 @@ namespace Assets.Scripts
 
         private void SetNextLetterCorrect()
         {
+            if (IsKeyDown) return;
             if (CurrentLetterPosition >= CurrentWordsToType.Length - 1) return;
             var firstHalf = CurrentWordsToType.Substring(0, CurrentLetterPosition + 1);
             var secondHalf = CurrentWordsToType.Substring(CurrentLetterPosition + 1);

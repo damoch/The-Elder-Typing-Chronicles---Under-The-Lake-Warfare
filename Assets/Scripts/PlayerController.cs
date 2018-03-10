@@ -12,6 +12,13 @@ public class PlayerController : MonoBehaviour {
 	public float badKeyPower = 1f;
 	public float noKeyPower = 0.5f;
 	public float SpeedOfBullet;
+    public float GravitationForce;//down
+    public float AntiGravitationForce;//up
+    public float BaseAntiGravitation;
+    public float AntiGravitationInc;
+    public float GravitationInc;
+    public float AntiGravitationNoInputIncrement;
+    public float ForceDiff;
 	
 	int hitPoints = 1;
 
@@ -28,21 +35,26 @@ public class PlayerController : MonoBehaviour {
 		}else if(Input.GetKeyDown("down")){
 			BadKey();
 		}else{
-			movement += Vector2.up * noKeyPower;
+			//movement += Vector2.up * noKeyPower;
 		}
-		rb.velocity = Vector2.Lerp(rb.velocity, rb.velocity + movement, smooth);
+		//rb.velocity = Vector2.Lerp(rb.velocity, rb.velocity + movement, smooth);
 		if(Input.GetKeyDown("space")){
 			Shoot();
 		}
-	}
+        ForceDiff = AntiGravitationForce - GravitationForce;
+        transform.Translate(0f, ForceDiff, 0f);
+        if(AntiGravitationForce < BaseAntiGravitation)
+            AntiGravitationForce += AntiGravitationNoInputIncrement;
+
+    }
 
 	public void GoodKey(){
-		movement += Vector2.down * goodKeyPower;
+        GravitationForce += GravitationInc;
 		Camera.main.GetComponent<CameraController>().Shake(0.6f, 1);
 	}
 	public void BadKey(){
-		movement += Vector2.up * badKeyPower;
-		Camera.main.GetComponent<CameraController>().Shake(0.6f, -1);
+        AntiGravitationForce += AntiGravitationInc;
+        Camera.main.GetComponent<CameraController>().Shake(0.6f, -1);
 	} 
     private void Shoot()
     {

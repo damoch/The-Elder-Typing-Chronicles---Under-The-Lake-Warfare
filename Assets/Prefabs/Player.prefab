@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114394000291510510}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,10 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8889b1224e746988f1b0b0ac3bb8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
   smooth: 0.1
   goodKeyPower: 10
   badKeyPower: 10
   noKeyPower: 0.5
+  SpeedOfBullet: 0
 --- !u!212 &212960207363775512
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -34,7 +34,7 @@ public class BulletController : MonoBehaviour {
         if (collision.tag.Equals("Player"))
         {
             //todo if collision with player
-            //todo decrease life
+            collision.GetComponent<PlayerController>().HitPoints -= 1;
             DestroyGameObject();
         }
     }

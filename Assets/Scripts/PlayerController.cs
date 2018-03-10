@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour {
 	public Rigidbody2D Bullet;
 	Vector2 movement;
 	public float smooth = 0.4f;
-
 	public float goodKeyPower = 1f;
 	public float badKeyPower = 1f;
 	public float noKeyPower = 0.5f;
 	public float SpeedOfBullet;
+	
+	int hitPoints = 1;
 
 	
 	void Start () {
@@ -41,12 +42,24 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void BadKey(){
 		movement += Vector2.up * badKeyPower;
-		Camera.main.GetComponent<CameraController>().Shake(0.6f, 4);
-	}
+		Camera.main.GetComponent<CameraController>().Shake(0.6f, -1);
+	} 
     private void Shoot()
     {
         Vector2 _renderDirection = new Vector2(transform.position.x - 2, transform.position.y);
         Rigidbody2D _bullet = Instantiate(Bullet, _renderDirection, Quaternion.identity) as Rigidbody2D;
         _bullet.AddForce(new Vector2(-SpeedOfBullet, 0));
     }
+
+	public int HitPoints{
+		set{
+			hitPoints = value;
+			if(hitPoints <= 0){
+				Debug.Log("GAME OVER!");
+			}
+		}
+		get{
+			return hitPoints;
+		}
+	}
 }

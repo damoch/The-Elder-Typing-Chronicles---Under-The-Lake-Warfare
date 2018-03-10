@@ -840,6 +840,7 @@ MonoBehaviour:
   RGameText: Zacznij od nowa
   PController: {fileID: 1486680490}
   IsGameOver: 0
+  TypingController: {fileID: 563918335}
 --- !u!4 &1205855252
 Transform:
   m_ObjectHideFlags: 0

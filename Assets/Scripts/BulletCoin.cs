@@ -5,5 +5,6 @@ public class BulletCoin : Coin {
     {
         playerController.HasBullet = true;
         Generator.NumberOfObjects--;
+        playerController.HasBulletText.text = "Masz pocisk";
     }
 }

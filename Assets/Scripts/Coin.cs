@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 
 public abstract class Coin : MonoBehaviour {
-    
+    private void Start()
+    {
+        CoinGenerator.NumberOfCoins++;
+    }
+
     private void DestroyGameObject()
     {
+        CoinGenerator.NumberOfCoins--;
         Destroy(gameObject);
     }
 

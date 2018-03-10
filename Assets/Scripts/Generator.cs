@@ -25,13 +25,13 @@ public class Generator : MonoBehaviour {
         SpawnInterval = Random.Range(MinSpawnInterval, MaxSpawnInterval);
     }
 	
-	protected void Update ()
+	protected virtual void Update ()
     {
         _renderDirection.y = Random.Range(MinPositionY, MaxPositionY);
         _time += Time.deltaTime;
         if (_time > SpawnInterval)
         {
-            if(NumberOfObjects < MaxNumberOfObjects)
+            if(CanCreateObject())
                 RenderObject();
             _time = 0;
             SpawnInterval = Random.Range(MinSpawnInterval, MaxSpawnInterval);
@@ -40,8 +40,12 @@ public class Generator : MonoBehaviour {
 
     protected virtual void RenderObject()
     {
-        NumberOfObjects++;
         _renderedObject = Instantiate(RenderedObject, _renderDirection, Quaternion.identity) as Rigidbody2D;
         _renderedObject.AddForce(new Vector2(-SpeedOfRenderObject, 0));
+    }
+
+    protected virtual bool CanCreateObject()
+    {
+        return NumberOfObjects < MaxNumberOfObjects;
     }
 }

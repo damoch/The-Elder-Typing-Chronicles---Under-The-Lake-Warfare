@@ -13,6 +13,7 @@ public class RendererController : MonoBehaviour {
     private float _time;
     private Vector2 _renderDirection;
 
+    public static int NumberOfEnemies;
     void Start () {
         _time = 0;
         _renderDirection = new Vector2(transform.position.x, transform.position.y);

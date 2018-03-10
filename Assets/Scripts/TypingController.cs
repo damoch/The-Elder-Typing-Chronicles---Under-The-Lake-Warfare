@@ -52,17 +52,19 @@ namespace Assets.Scripts
         {
             SetupWordList();
 
-            DisplayedText.text = CurrentWordsToType;
             _correctOpenTag = string.Format(ColorOpenTag, CorrectColorHex);
             _wrongOpenTag = string.Format(ColorOpenTag, WrongColorHex);
         }
-        private void SetupWordList()
+        public void SetupWordList()
         {
             _textStack = new Stack();
             var text = GameText.text.Split(Environment.NewLine.ToCharArray()).ToList();
             text.RemoveAll(x => x == string.Empty);
             text.Reverse();
             text.ForEach(x => _textStack.Push(x));
+            CurrentLetterPosition = 0;
+            CurrentWordsToType = "";
+            //DisplayedText.text = "";
         }
         private void OnGUI()
         {

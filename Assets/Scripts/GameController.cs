@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
     public PlayerController PController;
     private string _rGameText;
     public bool IsGameOver;
+    public Assets.Scripts.TypingController TypingController;
 	// Use this for initialization
 	void Start () {
         _rGameText = RGameText;
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour {
 
     internal void GameOver()
     {
+        TypingController.SetupWordList();
         IsGameOver = true;
         RGame.gameObject.SetActive(true);
         var gObjects = FindObjectsOfType<BadGuyController>();

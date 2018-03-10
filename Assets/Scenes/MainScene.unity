@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &295413601 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1595277611333564, guid: 0d37652c2715f42faad11192927ee927,
+    type: 2}
+  m_PrefabInternal: {fileID: 1486680489}
 --- !u!1001 &524910354
 Prefab:
   m_ObjectHideFlags: 0
@@ -751,6 +756,39 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f0c33fb011e72a24ca0209d92877e25b, type: 2}
+    - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: ForceField
+      value: 
+      objectReference: {fileID: 295413601}
+    - target: {fileID: 108420385878052120, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: m_DrawHalo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341004201008226, guid: 0d37652c2715f42faad11192927ee927, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341004201008226, guid: 0d37652c2715f42faad11192927ee927, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108420385878052120, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.4068966
+      objectReference: {fileID: 0}
+    - target: {fileID: 108420385878052120, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108420385878052120, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d37652c2715f42faad11192927ee927, type: 2}
   m_IsPrefabParent: 0

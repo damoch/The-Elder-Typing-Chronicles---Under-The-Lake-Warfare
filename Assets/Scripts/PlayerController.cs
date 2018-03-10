@@ -15,8 +15,10 @@ public class PlayerController : MonoBehaviour {
 	
 	int hitPoints = 1;
 
-	
-	void Start () {
+    private bool _hasShield = false;
+    private bool _hasBullet = false;
+
+    void Start () {
 		rb = GetComponent<Rigidbody2D>();
 	}
 	
@@ -62,4 +64,14 @@ public class PlayerController : MonoBehaviour {
 			return hitPoints;
 		}
 	}
+
+    public void GetShield()
+    {
+        _hasShield = true;
+    }
+
+    public void GetBullet()
+    {
+        _hasBullet = true;
+    }
 }

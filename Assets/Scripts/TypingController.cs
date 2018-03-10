@@ -17,6 +17,12 @@ namespace Assets.Scripts
         public string ShieldKeyword;
         public string CurrentLetter { get
             {
+                if (CurrentWordsToType.Length == CurrentLetterPosition)
+                {
+                    CurrentWordsToType = GetRestOfThisBrutalUnderLakeWarfareStory();
+                    DisplayedText.text = CurrentWordsToType;
+                    CurrentLetterPosition = 0;
+                }
                 if (CurrentWordsToType[CurrentLetterPosition] == ' ')
                 {
                     CurrentWordsToType = CurrentWordsToType.Substring(CurrentLetterPosition + 1);
@@ -58,13 +64,14 @@ namespace Assets.Scripts
                 IsKeyDown = false;
                 CurrentLetterPosition++;
             }
+            if (Input.GetKeyUp(_previousPressedKey)) _previousPressedKey = KeyCode.None;
             if (Input.anyKey && Input.GetKey(CurrentLetter)) SetNextLetterCorrect();
             else if (Input.anyKey && !IsKeyDown) SetNextLetterWrong();
         }
 
         private void SetNextLetterWrong()
         {
-            //CheckPowerStrings();
+            if (IsKeyDown) return;
             var firstHalf = CurrentWordsToType.Substring(0, CurrentLetterPosition);
             var secondHalf = CurrentWordsToType.Substring(CurrentLetterPosition, CurrentWordsToType.Length - CurrentLetterPosition);
             var result = firstHalf + _wrongOpenTag + CurrentLetter + ColorCloseTag + secondHalf.Substring(1, secondHalf.Length - 1) ;
@@ -73,9 +80,9 @@ namespace Assets.Scripts
             PlayerController.BadKey();
         }
 
+
         private void SetNextLetterCorrect()
         {
-            //CheckPowerStrings();
             if (CurrentLetterPosition >= CurrentWordsToType.Length - 1) return;
             var firstHalf = CurrentWordsToType.Substring(0, CurrentLetterPosition + 1);
             var secondHalf = CurrentWordsToType.Substring(CurrentLetterPosition + 1);
@@ -88,14 +95,14 @@ namespace Assets.Scripts
 
         private void CheckPowerStrings(KeyCode kc)
         {
-            Debug.Log("Nacisnieto: " + kc);
             _previousPressedKey = kc;
 
             CurrentPowerString += kc.ToString().ToLower();
-            var tmpShoot = ShootKeyword.Substring(0, CurrentPowerString.Length).ToLower();
-            var tmpShield = ShieldKeyword.Substring(0, CurrentPowerString.Length).ToLower();
+            var len = CurrentPowerString.Length;
+            var tmpShoot = ShootKeyword.Substring(0, len < ShootKeyword.Length ? len : 0).ToLower();
+            var tmpShield = ShieldKeyword.Substring(0, len < ShieldKeyword.Length ? len : 0).ToLower();
 
-            if(tmpShield == CurrentPowerString || tmpShoot == CurrentPowerString)
+            if(ShootKeyword.StartsWith(CurrentPowerString) || ShieldKeyword.StartsWith(CurrentPowerString))
             {
                 DisplayedPowerText.text = CurrentPowerString;
 
@@ -115,6 +122,12 @@ namespace Assets.Scripts
             }
             CurrentPowerString = "";
             DisplayedPowerText.text = "";
+        }
+
+        private string GetRestOfThisBrutalUnderLakeWarfareStory()
+        {
+            //dac potem te teksty z pliku xd
+            return "ipsum foreverium"; //temporary
         }
     }
 }

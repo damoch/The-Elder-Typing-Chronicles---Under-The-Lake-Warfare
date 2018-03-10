@@ -545,6 +545,11 @@ Prefab:
       propertyPath: PlayerController
       value: 
       objectReference: {fileID: 685597297}
+    - target: {fileID: 114386155830433958, guid: 8764e7d90bbe6b74b820b59a86ad967e,
+        type: 2}
+      propertyPath: CurrentWordsToType
+      value: lorem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8764e7d90bbe6b74b820b59a86ad967e, type: 2}
   m_IsPrefabParent: 0

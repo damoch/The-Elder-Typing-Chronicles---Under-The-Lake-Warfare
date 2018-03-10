@@ -5,16 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
-	
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+	public GameObject x;
 
 	public void StartGame(){
 		SceneManager.LoadScene(1);
+	}
+
+	public void MagicznaMetodaDoTogglowaniaCreditsów(){
+		x.SetActive(!x.activeSelf); 
 	}
 }

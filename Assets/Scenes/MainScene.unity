@@ -1097,7 +1097,7 @@ Prefab:
     - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
         type: 2}
       propertyPath: GravitationInc
-      value: 0.02
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
         type: 2}
@@ -1172,6 +1172,16 @@ Prefab:
       propertyPath: HasCoinText
       value: 
       objectReference: {fileID: 1145095315}
+    - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: HasShieldText
+      value: 
+      objectReference: {fileID: 1145095315}
+    - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: HasBulletText
+      value: 
+      objectReference: {fileID: 685845687}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d37652c2715f42faad11192927ee927, type: 2}
   m_IsPrefabParent: 0

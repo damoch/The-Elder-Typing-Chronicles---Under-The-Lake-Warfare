@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Generator : MonoBehaviour {
 
@@ -24,26 +22,24 @@ public class Generator : MonoBehaviour {
     {
         _time = 0;
         _renderDirection = new Vector2(transform.position.x, transform.position.y);
-        SpawnInterval = UnityEngine.Random.Range(MinSpawnInterval, MaxSpawnInterval);
+        SpawnInterval = Random.Range(MinSpawnInterval, MaxSpawnInterval);
     }
 	
 	protected void Update ()
     {
-        _renderDirection.y = UnityEngine.Random.Range(MinPositionY, MaxPositionY);
+        _renderDirection.y = Random.Range(MinPositionY, MaxPositionY);
         _time += Time.deltaTime;
         if (_time > SpawnInterval)
         {
             if(NumberOfObjects < MaxNumberOfObjects)
                 RenderObject();
             _time = 0;
-            SpawnInterval = UnityEngine.Random.Range(MinSpawnInterval, MaxSpawnInterval);
+            SpawnInterval = Random.Range(MinSpawnInterval, MaxSpawnInterval);
         }
     }
 
     protected virtual void RenderObject()
     {
-        //if you want to update position of rendered objects
-        //_renderDirection = new Vector2(transform.position.x, transform.position.y);
         NumberOfObjects++;
         _renderedObject = Instantiate(RenderedObject, _renderDirection, Quaternion.identity) as Rigidbody2D;
         _renderedObject.AddForce(new Vector2(-SpeedOfRenderObject, 0));

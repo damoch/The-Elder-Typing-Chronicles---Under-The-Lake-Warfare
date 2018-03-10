@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Coin : MonoBehaviour {
+public abstract class Coin : MonoBehaviour {
     
     private void DestroyGameObject()
     {
@@ -17,11 +14,8 @@ public class Coin : MonoBehaviour {
             DestroyGameObject();
             DoYourAction(collision.gameObject.GetComponent<PlayerController>());
         }
+        if(collision.tag.Equals("DestructiveWall")) DestroyGameObject();
     }
 
-    public virtual void DoYourAction(PlayerController playerController)
-    {
-        Debug.Log("You should override this method or don't use this class D :");
-        throw new NotImplementedException();
-    }
+    public abstract void DoYourAction(PlayerController playerController);
 }

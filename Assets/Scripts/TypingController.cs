@@ -117,7 +117,8 @@ namespace Assets.Scripts
             var tmpShoot = ShootKeyword.Substring(0, len < ShootKeyword.Length ? len : 0).ToLower();
             var tmpShield = ShieldKeyword.Substring(0, len < ShieldKeyword.Length ? len : 0).ToLower();
 
-            if(ShootKeyword.StartsWith(CurrentPowerString) || ShieldKeyword.StartsWith(CurrentPowerString))
+            if((ShootKeyword.StartsWith(CurrentPowerString) && PlayerController.HasBullet) 
+                || (ShieldKeyword.StartsWith(CurrentPowerString) && PlayerController.HasShield))
             {
                 DisplayedPowerText.text = CurrentPowerString;
 
@@ -129,7 +130,7 @@ namespace Assets.Scripts
                 }
                 if (CurrentPowerString == ShieldKeyword)
                 {
-                    Debug.Log("shieeeld!");
+                    PlayerController.Shield();
                     CurrentPowerString = "";
                     DisplayedPowerText.text = "";
                 }

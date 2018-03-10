@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -19,10 +20,12 @@ public class PlayerController : MonoBehaviour {
     private float _frameGravDiff;
     private float _frameAntigravDiff;
     
-    private bool _hasShield = false;
-    private bool _hasBullet = false;
-
+    public bool HasShield = false;
+    public bool HasBullet = false;
+    public bool IsShieldOn;
+    public GameObject ForceField;
     private void Start () {
+        ForceField.SetActive(HasShield);
         InvokeRepeating("NoKey", 1f, 1f);
 	}
 	
@@ -56,10 +59,12 @@ public class PlayerController : MonoBehaviour {
         var _spawnDirection = new Vector2(transform.position.x + 4, transform.position.y);
         var _bullet = Instantiate(Bullet, _spawnDirection, Quaternion.identity) as Rigidbody2D;
         _bullet.AddForce(new Vector2(SpeedOfBullet, 0));
+        HasBullet = false;
     }
 
 	public int HitPoints{
 		set{
+            if (IsShieldOn) return;
 			hitPoints = value;
 			if(hitPoints <= 0){
 				Debug.Log("GAME OVER!");
@@ -70,13 +75,19 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    public void GetShield()
+    public float ShieldTimeoutLength { get; private set; }
+
+    internal void Shield()
     {
-        _hasShield = true;
+        IsShieldOn = true;
+        HasShield = false;
+        ForceField.SetActive(true);
     }
 
-    public void GetBullet()
+    private IEnumerator ShieldTimeout()
     {
-        _hasBullet = true;
+        yield return new WaitForSeconds(ShieldTimeoutLength);
+        IsShieldOn = false;
+        ForceField.SetActive(false);
     }
 }

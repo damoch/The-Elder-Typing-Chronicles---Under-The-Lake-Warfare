@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class CoinGenerator : Generator {
 
-    public Rigidbody2D ShieldCoin;
-    public Rigidbody2D BulletCoin;
-
-    //private Rigidbody2D[] _coins = new Rigidbody2D[]
-    //{
-    //    ShieldCoin,
-    //    BulletCoin
-    //};
-
-    private void Update () {
-        int rand = Random.RandomRange(0, 1);
-        RenderedObject = (rand == 1) ? ShieldCoin : BulletCoin;
+    public List<Rigidbody2D> PowerUpList;
+    public static int NumberOfCoins;
+    new private void Update () {
+        RenderedObject = PowerUpList[Random.Range(0, PowerUpList.Count -1)];
         base.Update();
 	}
 }

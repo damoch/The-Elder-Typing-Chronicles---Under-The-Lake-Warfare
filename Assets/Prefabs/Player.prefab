@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8889b1224e746988f1b0b0ac3bb8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 0}
+  Bullet: {fileID: 50630151754180368, guid: 42f119f3955bfc84493c5551badbcba5, type: 2}
   smooth: 0.1
   goodKeyPower: 10
   badKeyPower: 10

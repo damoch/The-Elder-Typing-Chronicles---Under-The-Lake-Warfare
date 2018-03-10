@@ -41,6 +41,9 @@ public class GameController : MonoBehaviour {
         {
             Destroy(bullets[go].gameObject);
         }
+
+        Generator.NumberOfObjects = 0;
+        CoinGenerator.NumberOfCoins = 0;
         RGame.T.text = RGameText;
     }
 

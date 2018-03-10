@@ -113,7 +113,7 @@ namespace Assets.Scripts
 
                 if(CurrentPowerString == ShootKeyword)
                 {
-                    Debug.Log("shooot!");
+                    PlayerController.Shoot();
                     CurrentPowerString = "";
                     DisplayedPowerText.text = "";
                 }

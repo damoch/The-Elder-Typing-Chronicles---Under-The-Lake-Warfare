@@ -1468,11 +1468,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4991514519144176, guid: 0d37652c2715f42faad11192927ee927, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.050117016
+      value: -16.76
       objectReference: {fileID: 0}
     - target: {fileID: 4991514519144176, guid: 0d37652c2715f42faad11192927ee927, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.07150364
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4991514519144176, guid: 0d37652c2715f42faad11192927ee927, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1527,7 +1527,7 @@ Prefab:
     - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
         type: 2}
       propertyPath: AntiGravitationForce
-      value: 0.05
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
         type: 2}
@@ -1537,12 +1537,27 @@ Prefab:
     - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
         type: 2}
       propertyPath: AntiGravitationInc
-      value: 0.025
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
         type: 2}
       propertyPath: GravitationInc
-      value: 0.1
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: AntiGravitationNoInputIncrement
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: GravTreshold
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114394000291510510, guid: 0d37652c2715f42faad11192927ee927,
+        type: 2}
+      propertyPath: AntigravTreshold
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d37652c2715f42faad11192927ee927, type: 2}

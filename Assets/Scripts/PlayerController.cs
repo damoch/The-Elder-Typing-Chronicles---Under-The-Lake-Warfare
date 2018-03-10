@@ -1,16 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	Rigidbody2D rb;
 	public Rigidbody2D Bullet;
-	Vector2 movement;
-	public float smooth = 0.4f;
-	public float goodKeyPower = 1f;
-	public float badKeyPower = 1f;
-	public float noKeyPower = 0.5f;
 	public float SpeedOfBullet;
     public float GravitationForce;//down
     public float AntiGravitationForce;//up
@@ -19,48 +12,41 @@ public class PlayerController : MonoBehaviour {
     public float GravitationInc;
     public float AntiGravitationNoInputIncrement;
     public float ForceDiff;
-	
-	int hitPoints = 1;
+    public float GravTreshold;
+    public float AntigravTreshold;
 
-	
-	void Start () {
+	private int hitPoints = 1;
+    private Rigidbody2D rb;
+    private float _frameGravDiff;
+    private float _frameAntigravDiff;
+
+
+    void Start () {
 		rb = GetComponent<Rigidbody2D>();
 	}
 	
 	void FixedUpdate () {
-		//rb.velocity = new Vector2(300,0) * Time.fixedDeltaTime; //Horizontal Movement
-		movement = Vector2.zero;
-		if(Input.GetKeyDown("up")){
-			GoodKey();
-		}else if(Input.GetKeyDown("down")){
-			BadKey();
-		}else{
-			//movement += Vector2.up * noKeyPower;
-		}
-		//rb.velocity = Vector2.Lerp(rb.velocity, rb.velocity + movement, smooth);
-		if(Input.GetKeyDown("space")){
-			Shoot();
-		}
+        var y = Math.Abs(transform.position.y);
+        _frameGravDiff = (y / AntigravTreshold) * GravitationInc;
+        _frameAntigravDiff = (y / AntigravTreshold) * AntiGravitationInc;
         ForceDiff = AntiGravitationForce - GravitationForce;
         transform.Translate(0f, ForceDiff, 0f);
-        if(AntiGravitationForce < BaseAntiGravitation)
-            AntiGravitationForce += AntiGravitationNoInputIncrement;
 
     }
 
 	public void GoodKey(){
-        GravitationForce += GravitationInc;
+        GravitationForce += _frameGravDiff;
 		Camera.main.GetComponent<CameraController>().Shake(0.6f, 1);
 	}
 	public void BadKey(){
-        AntiGravitationForce += AntiGravitationInc;
+        AntiGravitationForce += _frameAntigravDiff;
         Camera.main.GetComponent<CameraController>().Shake(0.6f, -1);
 	} 
-    private void Shoot()
+    public void Shoot()
     {
-        Vector2 _renderDirection = new Vector2(transform.position.x - 2, transform.position.y);
-        Rigidbody2D _bullet = Instantiate(Bullet, _renderDirection, Quaternion.identity) as Rigidbody2D;
-        _bullet.AddForce(new Vector2(-SpeedOfBullet, 0));
+        var _spawnDirection = new Vector2(transform.position.x + 4, transform.position.y);
+        var _bullet = Instantiate(Bullet, _spawnDirection, Quaternion.identity) as Rigidbody2D;
+        _bullet.AddForce(new Vector2(SpeedOfBullet, 0));
     }
 
 	public int HitPoints{

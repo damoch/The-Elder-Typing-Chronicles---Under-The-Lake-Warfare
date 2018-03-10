@@ -23,22 +23,29 @@ public class PlayerController : MonoBehaviour {
     public bool HasShield = false;
     public bool HasBullet = false;
     public bool IsShieldOn;
+    private float _startY;
     public GameObject ForceField;
+    public GameController GameController;
     private void Start () {
         ForceField.SetActive(HasShield);
         InvokeRepeating("NoKey", 1f, 1f);
+        _startY = transform.position.y;
 	}
 	
 	private void FixedUpdate () {
+        if (!gameObject.activeInHierarchy) return;
         var y = Math.Abs(transform.position.y);
         _frameGravDiff = (y / AntigravTreshold) * GravitationInc;
         _frameAntigravDiff = (y / AntigravTreshold) * AntiGravitationInc;
         ForceDiff = AntiGravitationForce - GravitationForce;
         transform.Translate(0f, ForceDiff, 0f);
+        y = transform.position.y;
+        if (y > AntigravTreshold || y < GravTreshold) GameOver();
 
     }
 
-	public void GoodKey(){
+	public void GoodKey()
+    {
         GravitationForce += _frameGravDiff;
 		Camera.main.GetComponent<CameraController>().Shake(0.6f, 1);
 	}
@@ -49,7 +56,8 @@ public class PlayerController : MonoBehaviour {
 
     private void NoKey()
     {
-        if(GravitationForce > 0)
+        if (!gameObject.activeInHierarchy) return;
+        if (GravitationForce > 0)
             GravitationForce -= _frameGravDiff;
 
         AntiGravitationForce += _frameAntigravDiff/2;
@@ -67,7 +75,7 @@ public class PlayerController : MonoBehaviour {
             if (IsShieldOn) return;
 			hitPoints = value;
 			if(hitPoints <= 0){
-				Debug.Log("GAME OVER!");
+                GameOver();
 			}
 		}
 		get{
@@ -89,5 +97,19 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(ShieldTimeoutLength);
         IsShieldOn = false;
         ForceField.SetActive(false);
+    }
+
+    private void GameOver()
+    {
+        gameObject.SetActive(false);
+        GameController.GameOver();
+    }
+
+    public void StartNewGame()
+    {
+        transform.position = new Vector3(transform.position.x, _startY, 0f);
+        gameObject.SetActive(true);
+        AntiGravitationForce = BaseAntiGravitation;
+        GravitationForce = 0;
     }
 }

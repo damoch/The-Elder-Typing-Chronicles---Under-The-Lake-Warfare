@@ -6,11 +6,9 @@ using UnityEngine;
 public class BulletController : MonoBehaviour {
 
     public float BulletLife;
-
-    private Rigidbody2D _rigidbody;
+    
 
     void Start () {
-        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void DestroyGameObject()

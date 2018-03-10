@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-	float newRotation = 3;
 	bool isShaking = false;
 	float shakeTime;
 	float shakeForce;

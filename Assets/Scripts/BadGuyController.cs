@@ -11,12 +11,10 @@ public class BadGuyController : MonoBehaviour {
 
 
     private float _badGuyLife;
-    private Rigidbody2D _rigidbody;
     private float _shootTime;
 
     void Start () {
         Generator.NumberOfObjects++;
-        _rigidbody = GetComponent<Rigidbody2D>();
         _badGuyLife = 1;
         _shootTime = 0;
         ShootInterval += UnityEngine.Random.Range(0, 2);

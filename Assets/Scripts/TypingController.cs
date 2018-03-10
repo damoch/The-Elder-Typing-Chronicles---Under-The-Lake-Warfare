@@ -50,16 +50,20 @@ namespace Assets.Scripts
 
         private void Start()
         {
+            SetupWordList();
+
+            DisplayedText.text = CurrentWordsToType;
+            _correctOpenTag = string.Format(ColorOpenTag, CorrectColorHex);
+            _wrongOpenTag = string.Format(ColorOpenTag, WrongColorHex);
+        }
+        private void SetupWordList()
+        {
             _textStack = new Stack();
             var text = GameText.text.Split(Environment.NewLine.ToCharArray()).ToList();
             text.RemoveAll(x => x == string.Empty);
             text.Reverse();
             text.ForEach(x => _textStack.Push(x));
-            DisplayedText.text = CurrentWordsToType;
-            _correctOpenTag = string.Format(ColorOpenTag, CorrectColorHex);
-            _wrongOpenTag = string.Format(ColorOpenTag, WrongColorHex);
         }
-
         private void OnGUI()
         {
             Event e = Event.current;
@@ -72,6 +76,7 @@ namespace Assets.Scripts
 
         private void Update()
         {
+            if (!PlayerController.gameObject.activeInHierarchy) return;
             if (Input.GetKeyUp(CurrentLetter))
             {
                 IsKeyDown = false;
@@ -114,8 +119,6 @@ namespace Assets.Scripts
 
             CurrentPowerString += kc.ToString().ToLower();
             var len = CurrentPowerString.Length;
-            var tmpShoot = ShootKeyword.Substring(0, len < ShootKeyword.Length ? len : 0).ToLower();
-            var tmpShield = ShieldKeyword.Substring(0, len < ShieldKeyword.Length ? len : 0).ToLower();
 
             if((ShootKeyword.StartsWith(CurrentPowerString) && PlayerController.HasBullet) 
                 || (ShieldKeyword.StartsWith(CurrentPowerString) && PlayerController.HasShield))
@@ -142,9 +145,9 @@ namespace Assets.Scripts
 
         private string GetRestOfThisBrutalUnderLakeWarfareStory()
         {
-            //dac potem te teksty z pliku xd
             return _textStack.Pop().ToString();
         }
+       
     }
 }
 

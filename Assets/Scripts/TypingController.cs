@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts
@@ -37,14 +40,21 @@ namespace Assets.Scripts
         public string CurrentPowerString;
         public int PowerIndex = 0;
         public PlayerController PlayerController;
+        public TextAsset GameText;
 
         private string _correctOpenTag;
         private string _wrongOpenTag;
         private KeyCode _previousPressedKey;
         private bool _wrongKeyDown;
+        private Stack _textStack;
 
         private void Start()
         {
+            _textStack = new Stack();
+            var text = GameText.text.Split(Environment.NewLine.ToCharArray()).ToList();
+            text.RemoveAll(x => x == string.Empty);
+            text.Reverse();
+            text.ForEach(x => _textStack.Push(x));
             DisplayedText.text = CurrentWordsToType;
             _correctOpenTag = string.Format(ColorOpenTag, CorrectColorHex);
             _wrongOpenTag = string.Format(ColorOpenTag, WrongColorHex);
@@ -132,7 +142,7 @@ namespace Assets.Scripts
         private string GetRestOfThisBrutalUnderLakeWarfareStory()
         {
             //dac potem te teksty z pliku xd
-            return "ipsum foreverium"; //temporary
+            return _textStack.Pop().ToString();
         }
     }
 }

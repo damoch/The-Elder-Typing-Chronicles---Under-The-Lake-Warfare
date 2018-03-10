@@ -52,10 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayedText: {fileID: 0}
-  CurrentWordsToType: Lorem ipsum pozdrawiam cieplutko i goraco
+  DisplayedPowerText: {fileID: 0}
+  CurrentWordsToType: lorem
   CorrectColorHex: '#008000ff'
   WrongColorHex: '#ff0000ff'
   ColorOpenTag: <color={0}>
   ColorCloseTag: </color>
   CurrentLetterPosition: 0
+  ShootKeyword: shoot
+  ShieldKeyword: shield
   IsKeyDown: 0
+  CurrentPowerString: 
+  PowerIndex: 0
+  PlayerController: {fileID: 0}

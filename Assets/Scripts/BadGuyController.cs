@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BadGuyController : MonoBehaviour {
 
@@ -17,7 +14,7 @@ public class BadGuyController : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody2D>();
         _badGuyLife = 1;
         _shootTime = 0;
-        ShootInterval += UnityEngine.Random.Range(0, 1);
+        ShootInterval += UnityEngine.Random.Range(0, 2);
     }
 	
 	void Update () {
@@ -37,6 +34,7 @@ public class BadGuyController : MonoBehaviour {
 
     private void DestroyGameObject()
     {
+        Generator.NumberOfObjects--;
         Destroy(gameObject);
     }
 

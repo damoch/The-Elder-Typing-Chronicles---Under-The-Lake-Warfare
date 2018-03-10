@@ -16,18 +16,17 @@ public class PlayerController : MonoBehaviour {
     public float AntigravTreshold;
     
 	private int hitPoints = 1;
-    private Rigidbody2D rb;
     private float _frameGravDiff;
     private float _frameAntigravDiff;
     
     private bool _hasShield = false;
     private bool _hasBullet = false;
 
-    void Start () {
-		rb = GetComponent<Rigidbody2D>();
+    private void Start () {
+        InvokeRepeating("NoKey", 1f, 1f);
 	}
 	
-	void FixedUpdate () {
+	private void FixedUpdate () {
         var y = Math.Abs(transform.position.y);
         _frameGravDiff = (y / AntigravTreshold) * GravitationInc;
         _frameAntigravDiff = (y / AntigravTreshold) * AntiGravitationInc;
@@ -44,6 +43,14 @@ public class PlayerController : MonoBehaviour {
         AntiGravitationForce += _frameAntigravDiff;
         Camera.main.GetComponent<CameraController>().Shake(0.6f, -1);
 	} 
+
+    private void NoKey()
+    {
+        if(GravitationForce > 0)
+            GravitationForce -= _frameGravDiff;
+
+        AntiGravitationForce += _frameAntigravDiff/2;
+    }
     public void Shoot()
     {
         var _spawnDirection = new Vector2(transform.position.x + 4, transform.position.y);

@@ -60,5 +60,11 @@ public class BadGuyController : MonoBehaviour {
             DestroyGameObject();
             return;
         }
+
+        if (collision.tag.Equals("Player"))
+        {
+            collision.GetComponent<PlayerController>().HitPoints -= 1;
+            DestroyGameObject();
+        }
     }
 }

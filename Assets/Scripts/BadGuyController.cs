@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BadGuyController : MonoBehaviour {
 
     public Rigidbody2D Bullet;
     public float SpeedOfBullet;
     public float ShootInterval;
+    public List<AudioClip> LaserClips;
+    public List<AudioClip> ExplosionClips;
+
 
     private float _badGuyLife;
     private Rigidbody2D _rigidbody;
@@ -35,6 +39,7 @@ public class BadGuyController : MonoBehaviour {
     private void DestroyGameObject()
     {
         Generator.NumberOfObjects--;
+        GetComponent<AudioSource>().PlayOneShot(ExplosionClips[Random.Range(0, ExplosionClips.Count - 1)]);
         Destroy(gameObject);
     }
 
@@ -45,8 +50,9 @@ public class BadGuyController : MonoBehaviour {
 
     private void Shoot()
     {
-        Vector2 _renderDirection = new Vector2(transform.position.x - 2, transform.position.y);
-        Rigidbody2D _bullet = Instantiate(Bullet, _renderDirection, Quaternion.identity) as Rigidbody2D;
+        GetComponent<AudioSource>().PlayOneShot(LaserClips[Random.Range(0, LaserClips.Count - 1)]);
+        var _renderDirection = new Vector2(transform.position.x - 2, transform.position.y);
+        var _bullet = Instantiate(Bullet, _renderDirection, Quaternion.identity) as Rigidbody2D;
         _bullet.AddForce(new Vector2(-SpeedOfBullet, 0));
     }
 

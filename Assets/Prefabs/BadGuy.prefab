@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 70589753772082594}
   - component: {fileID: 50553633647837564}
   - component: {fileID: 114243596784568788}
+  - component: {fileID: 82473986047814394}
   m_Layer: 0
   m_Name: BadGuy
   m_TagString: Enemy
@@ -151,6 +152,86 @@ CapsuleCollider2D:
   m_Offset: {x: -0.001091659, y: 0.0031190861}
   m_Size: {x: 0.15126693, y: 0.14123903}
   m_Direction: 1
+--- !u!82 &82473986047814394
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309502864274636}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 94
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95109331015847942
 Animator:
   serializedVersion: 3
@@ -182,6 +263,20 @@ MonoBehaviour:
   Bullet: {fileID: 50630151754180368, guid: 42f119f3955bfc84493c5551badbcba5, type: 2}
   SpeedOfBullet: 600
   ShootInterval: 2
+  LaserClips:
+  - {fileID: 8300000, guid: 29ebaaaad791f4e458cd1ea1092a8bef, type: 3}
+  - {fileID: 8300000, guid: 5fd9ab3dcae164e45904a6797cc60278, type: 3}
+  - {fileID: 8300000, guid: 7389894686a6bcc43a0cf1e1d70cb389, type: 3}
+  - {fileID: 8300000, guid: 63c03b0167966934283d6363ffd32b32, type: 3}
+  - {fileID: 8300000, guid: 231d16846be06104d818e055b56e4b38, type: 3}
+  ExplosionClips:
+  - {fileID: 8300000, guid: 304d5aa7f82ed104ba459e1d56384387, type: 3}
+  - {fileID: 8300000, guid: 121525ce02566b74dbad3d458e364256, type: 3}
+  - {fileID: 8300000, guid: c584a2ed85c6a8847a9e37478f482e3f, type: 3}
+  - {fileID: 8300000, guid: 35b69b822cec4e74b85042d2199054e5, type: 3}
+  - {fileID: 8300000, guid: 06e9a2c2e01d7cc459b1fedf61da134a, type: 3}
+  - {fileID: 8300000, guid: b0647126b56bcd64da774211b93c9940, type: 3}
+  - {fileID: 8300000, guid: 56a276da658c5fb4c8e2c3f5313167e2, type: 3}
 --- !u!212 &212714587585717686
 SpriteRenderer:
   m_ObjectHideFlags: 1

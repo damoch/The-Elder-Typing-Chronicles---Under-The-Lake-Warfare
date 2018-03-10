@@ -13,11 +13,6 @@ public class BulletController : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update ()
-    {
-        
-    }
-
     private void DestroyGameObject()
     {
         Destroy(gameObject);

@@ -50,7 +50,7 @@ public class BadGuyController : MonoBehaviour {
     private void Shoot()
     {
         GetComponent<AudioSource>().PlayOneShot(LaserClips[Random.Range(0, LaserClips.Count - 1)]);
-        var _renderDirection = new Vector2(transform.position.x - 2, transform.position.y);
+        var _renderDirection = new Vector2(transform.position.x - 4, transform.position.y);
         var _bullet = Instantiate(Bullet, _renderDirection, Quaternion.identity) as Rigidbody2D;
         _bullet.AddForce(new Vector2(-SpeedOfBullet, 0));
     }

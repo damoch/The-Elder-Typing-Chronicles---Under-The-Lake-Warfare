@@ -14,6 +14,7 @@ public class CoinGenerator : Generator {
 
     protected override bool CanCreateObject()
     {
-        return NumberOfCoins < MaxNumberOfObjects;
+        var gameOver = FindObjectOfType<GameController>().IsGameOver;
+        return !gameOver && NumberOfCoins < MaxNumberOfObjects;
     }
 }

@@ -46,6 +46,6 @@ public class Generator : MonoBehaviour {
 
     protected virtual bool CanCreateObject()
     {
-        return NumberOfObjects < MaxNumberOfObjects;
+        return !FindObjectOfType<GameController>().IsGameOver && NumberOfObjects < MaxNumberOfObjects;
     }
 }
